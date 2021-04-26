@@ -58,3 +58,7 @@ def secured(beem_method):
                  ''')
         return beem_method(*args, **kwargs)
     return verify
+
+
+def get_token():
+    return globals()['Tokens']
