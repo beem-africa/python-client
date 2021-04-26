@@ -3,7 +3,7 @@ import json
 import requests
 from base64 import b64encode
 from typing import Union, List
-from BeemAfrica import secured, get_token
+from BeemAfrica import secured, get_header
 
 
 BASE_SMS_URL = 'https://apisms.beem.africa/v1/send'
@@ -22,7 +22,7 @@ class SMS(object):
             r_body = self.get_body(message, recipients, **extra_details)
             return requests.post(
                 BASE_SMS_URL,
-                headers=self.get_header(),
+                headers=get_header(),
                 json=r_body
             ).json()
         except (requests.ConnectionError, requests.ConnectTimeout):
@@ -34,9 +34,10 @@ class SMS(object):
             sender_id = self.sender_id
 
         try:
+            print(sender_id)
             return requests.post(
                 BASE_BALANCE_URL.format(sender_id),
-                headers=self.get_header()
+                headers=get_header()
             ).json()
 
         except (requests.ConnectionError, requests.ConnectTimeout):
@@ -48,6 +49,10 @@ class SMS(object):
             raise TypeError(
                 f'recipients should be of Either type <list> or type <str> but not {type(recipients)} ')
 
+        if isinstance(recipients, list):
+            recipients = [{'recipient_id': index+1, 'dest_addr': recipient}
+                          for index, recipient in enumerate(recipients)]
+
         if isinstance(recipients, str):
             recipients = [{
                 'recipient_id': 1,
@@ -57,17 +62,10 @@ class SMS(object):
         return {
             'source_addr': extra_details.get('sender_id', self.sender_id),
             'schedule_time': extra_details.get('schedule_time', self.schedule_time),
+            'encoding': 0,
             'message': message,
             'recipients': recipients
 
-        }
-
-    @secured
-    def get_header(self):
-        token = get_token()
-        return {
-            'Content-Type': 'application/json',
-            'Authorization': b64encode(f'Basic {token.access_key} {token.secret_key}'.encode()).decode()
         }
 
 

@@ -1,3 +1,4 @@
+from base64 import b64encode
 from functools import wraps
 from dataclasses import dataclass
 
@@ -60,5 +61,11 @@ def secured(beem_method):
     return verify
 
 
-def get_token():
-    return globals()['Tokens']
+def get_header():
+    token = globals()['Tokens']
+    encoded_token = b64encode(
+        f'{token.access_key}:{token.secret_key}'.encode()).decode()
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': f'Basic {encoded_token}'
+    }
