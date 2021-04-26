@@ -40,7 +40,7 @@ class OTP(object):
                 'Connection to Beem OTP API Refused, Please check your internet connections')
 
     @secured
-    def verify(pin_id: str, pin: str) -> dict:
+    def verify(self, pin_id: str, pin: str) -> dict:
         if not all([isinstance(pin_id, str), isinstance(pin, str)]):
             raise TypeError('Both pin_id and pin should be of type<str>')
 
