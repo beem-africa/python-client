@@ -55,14 +55,24 @@ Here how you would send a single SMS with beem-africa, Note that I'm assuming yo
 The above example is that I'm assuming you're using default BeemAfrica sender ID to use yours just do this instead;
 
 ```python
->>> SMS.send_sms('You\'re now verified', '255xxxxxxxxx', sender_id='new-sender-id')
+>>> SMS.send_sms(
+        'You\'re now verified',
+        '255xxxxxxxxx', 
+        sender_id='new-sender-id'
+        )
+
 {'successful': True, 'request_id': 35918915, 'code': 100, 'message': 'Message Submitted Successfully', 'valid': 1, 'invalid': 0, 'duplicates': 0}
 ```
 
 You can also schedule message to be sent after a certain time or at a specific time to do that together with new sender_id, do this instead !!
 
 ```python
->>> SMS.send_sms('You have won a 10 Million', '2557xxxxxxxxx', sender_id='new-sender-d', schedule_time='scheduled time')
+>>> SMS.send_sms(
+        'You have won a 10 Million', 
+        '2557xxxxxxxxx', 
+        sender_id='new-sender-d', 
+        schedule_time='scheduled time'
+    )
 {'successful': True, 'request_id': 35918915, 'code': 100, 'message': 'Message Submitted Successfully', 'valid': 1, 'invalid': 0, 'duplicates': 0}
 ```
 
