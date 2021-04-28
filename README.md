@@ -1,5 +1,9 @@
-# python-client
+# [python-client](#)
 A Python library to easy the integration with the Beem Africa SMS Gateway 
+
+[![Downloads](https://pepy.tech/badge/beem-africa)](https://pepy.tech/project/beem-africa)
+[![Downloads](https://pepy.tech/badge/beem-africa/month)](https://pepy.tech/project/beem-africa)
+[![Downloads](https://pepy.tech/badge/beem-africa/week)](https://pepy.tech/project/beem-africa)
 
 
 ## Features to be Implemented 
