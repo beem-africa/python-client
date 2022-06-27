@@ -13,9 +13,12 @@ class OTP(object):
         pass
 
     @secured
-    def send_otp(self, recipient=None, app_id=126) -> dict:
+    def send_otp(self, recipient=None, app_id=None) -> dict:
         if not recipient:
             raise ValueError('recipient number should not be empty')
+        
+        if not app_id:
+            raise ValueError('App ID should not be empty, this is your Beem App ID')
 
         if not isinstance(app_id, int):
             raise TypeError(
