@@ -1,20 +1,19 @@
 # [python-client](#)
-A Python library to easy the integration with the Beem Africa SMS Gateway 
+
+A Python library to easy the integration with the Beem Africa SMS Gateway
 
 [![Downloads](https://pepy.tech/badge/beem-africa)](https://pepy.tech/project/beem-africa)
 [![Downloads](https://pepy.tech/badge/beem-africa/month)](https://pepy.tech/project/beem-africa)
 [![Downloads](https://pepy.tech/badge/beem-africa/week)](https://pepy.tech/project/beem-africa)
 
+## Features to be Implemented
 
-## Features to be Implemented 
-
-- [x] Airtime 
+- [x] Airtime
 - [x] OTP
-- [x] SMS 
+- [x] SMS
 - [ ] Two way SMS
 - [ ] USSD
-- [ ] Bpay
-
+- [x] Bpay
 
 ## Getting started
 
@@ -61,7 +60,7 @@ The above example is that I'm assuming you're using default BeemAfrica sender ID
 ```python
 >>> SMS.send_sms(
         'You\'re now verified',
-        '255xxxxxxxxx', 
+        '255xxxxxxxxx',
         sender_id='new-sender-id'
         )
 
@@ -72,9 +71,9 @@ You can also schedule message to be sent after a certain time or at a specific t
 
 ```python
 >>> SMS.send_sms(
-        'You have won a 10 Million', 
-        '2557xxxxxxxxx', 
-        sender_id='new-sender-d', 
+        'You have won a 10 Million',
+        '2557xxxxxxxxx',
+        sender_id='new-sender-d',
         schedule_time='scheduled time'
     )
 {'successful': True, 'request_id': 35918915, 'code': 100, 'message': 'Message Submitted Successfully', 'valid': 1, 'invalid': 0, 'duplicates': 0}
@@ -100,15 +99,13 @@ Here how to send OTP with Beem !!
 ```
 
 To verify the OTP send to user do this !!
- 
-Note:  Use pin_id from response you just recieve while sending an OTP and the PIN sent to user phone to verify the OTP, its going to look like this !!
 
+Note: Use pin_id from response you just recieve while sending an OTP and the PIN sent to user phone to verify the OTP, its going to look like this !!
 
 ```python
 >>> OTP.verify(pin_id='4a5c2141-c965-4a9d-aca4-54f58063e831', pin='122496')
 {'data': {'message': {'code': 117, 'message': 'Valid Pin'}}}
 ```
-
 
 ## AirTime
 
@@ -132,7 +129,6 @@ You can also check balance of remaining credit balance by doing this
 
 Well these are the only implemented features by now !
 
-
 ## Issues
 
 Are you facing any issue with the integration of beem-africa libray, please raise an Issue so as we can fix as soon as we can !!
@@ -144,7 +140,6 @@ Would you like to contribute to beem-africa python-client, Contributions of any 
 ## Give it star ?
 
 Was this repository useful to you in any means, well then give it a star so as more people can get to know it.
-
 
 ## Credits
 
