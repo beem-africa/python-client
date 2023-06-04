@@ -1,9 +1,11 @@
 import sys
 import requests
+import json
 from BeemAfrica import secured, get_header
 
 BPAY_BALANCE_URL = "https://apitopup.beem.africa/v1/credit-balance?app_name={}"
 BPAY_CHECKOUT_URL = "https://checkout.beem.africa/v1/checkout"
+BPAY_WHITELIST_URL = "https://checkout.beem.africa/v1/whitelist/add-to-list"
 
 
 class Bpay(object):
@@ -65,6 +67,25 @@ class Bpay(object):
         except (requests.ConnectionError, requests.ConnectTimeout):
             raise ConnectionError(
                 "Connection to the BPay checkout, Please check your internet connections"
+            )
+
+    @secured
+    def whitelist_website(self, website: str) -> dict:
+        """The application / website domain that implements the Checkout library needs to be whitelisted (approved authorized access).
+        To whitelist a domain, Send a request to the following endpoint with the given parameters:
+        """
+        try:
+            return requests.post(
+                BPAY_WHITELIST_URL,
+                data=json.dumps(
+                    {
+                        "website": website,
+                    }
+                ),
+            ).json()
+        except (requests.ConnectionError, requests.ConnectTimeout):
+            raise ConnectionError(
+                "Connection to the BEEM API Refused, Please check your internet connections"
             )
 
 
